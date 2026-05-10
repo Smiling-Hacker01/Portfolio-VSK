@@ -12,21 +12,21 @@ const SchoolCard = memo(({ school }: { school: typeof education.schools[0] }) =>
     >
       <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
       
-      <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8 relative z-10">
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
-            <FaGraduationCap className="text-2xl text-primary" />
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8 relative z-10">
+        <div className="flex items-start gap-3 sm:gap-4">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
+            <FaGraduationCap className="text-xl sm:text-2xl text-primary" />
           </div>
           <div>
-            <h3 className="text-2xl md:text-3xl font-bold font-syne text-text-primary mb-2">{school.schoolName}</h3>
-            <div className="text-lg text-secondary font-medium font-jetbrains mb-3">{school.subHeader}</div>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold font-syne text-text-primary mb-2 leading-tight">{school.schoolName}</h3>
+            <div className="text-base sm:text-lg text-secondary font-medium font-jetbrains mb-3">{school.subHeader}</div>
             <div className="flex items-center gap-2 text-text-muted text-sm font-medium">
               <FaMapMarkerAlt />
               <span>{school.location}</span>
             </div>
           </div>
         </div>
-        <div className="md:text-right shrink-0">
+        <div className="sm:text-right shrink-0">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-sm font-jetbrains font-bold">
             {school.duration}
           </span>
@@ -49,10 +49,10 @@ const SchoolCard = memo(({ school }: { school: typeof education.schools[0] }) =>
             <motion.li 
               key={i} 
               variants={slideInLeft}
-              className="text-text-muted text-sm md:text-base flex items-start"
+              className="text-text-muted text-sm md:text-base flex items-start min-w-0"
             >
               <span className="mr-3 mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 bg-primary"></span>
-              <span>{bullet}</span>
+              <span className="break-words min-w-0">{bullet}</span>
             </motion.li>
           ))}
         </motion.ul>

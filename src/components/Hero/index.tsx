@@ -4,7 +4,7 @@ import Lottie from 'lottie-react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhoneAlt } from 'react-icons/fa';
 import { greeting, socialLinks } from '../../data/portfolio';
 import { useTypewriter } from '../../hooks/useTypewriter';
-import { fadeUp, staggerContainer, slideInLeft } from '../../utils/animations';
+import { fadeUp, staggerContainer, fadeDown } from '../../utils/animations';
 import styles from './Hero.module.css';
 
 const LottieAnimation = memo(() => {
@@ -58,47 +58,50 @@ export default function Hero() {
   ]);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden" id="hero">
+    <section className="relative min-h-screen flex items-center pt-16 sm:pt-20 pb-10 overflow-hidden" id="hero">
       <div className={styles.dotGrid} />
       <div className={styles.glow} />
       
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
         {/* Left Column */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-5 sm:gap-6"
         >
-          <motion.div variants={slideInLeft} className="font-jetbrains text-code-green text-sm flex items-center gap-2">
-            <span>{'{'} Backend Engineer {'}'}</span>
-            <span className="animate-pulse w-2 h-4 bg-code-green block"></span>
+          <motion.div variants={fadeDown}>
+            <div className={styles.heroBadge}>
+              <span className={styles.badgeDot} />
+              <span className={styles.badgeText}>Backend Engineer</span>
+              <span className={styles.badgeCursor}>▋</span>
+            </div>
           </motion.div>
 
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-bold font-syne text-text-primary leading-tight">
+          <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-7xl font-bold font-syne text-text-primary leading-tight">
             {greeting.title}
           </motion.h1>
 
-          <motion.div variants={fadeUp} className="text-2xl md:text-3xl font-syne text-primary font-semibold h-[40px]">
+          <motion.div variants={fadeUp} className="text-xl sm:text-2xl md:text-3xl font-syne text-primary font-semibold h-auto sm:h-[40px]">
             <span className="text-secondary">&gt;</span> {typedText}<span className="animate-pulse">█</span>
           </motion.div>
 
-          <motion.p variants={fadeUp} className="text-lg text-text-muted leading-relaxed max-w-xl">
+          <motion.p variants={fadeUp} className={styles.subtitle}>
             {greeting.subtitle}
           </motion.p>
 
-          <motion.div variants={fadeUp} className="flex items-center gap-6 mt-2">
+          <motion.div variants={fadeUp} className="flex items-center gap-5 mt-2">
             <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-2xl text-text-muted hover:text-white transition-colors" aria-label="GitHub"><FaGithub /></a>
             <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-2xl text-text-muted hover:text-[#0a66c2] transition-colors" aria-label="LinkedIn"><FaLinkedin /></a>
             <a href={`mailto:${socialLinks.gmail}`} className="text-2xl text-text-muted hover:text-[#ea4335] transition-colors" aria-label="Email"><FaEnvelope /></a>
             <a href={`tel:${socialLinks.phone}`} className="text-2xl text-text-muted hover:text-secondary transition-colors" aria-label="Phone"><FaPhoneAlt /></a>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-6">
-            <a href="#projects" className="px-8 py-3 bg-primary text-white font-bold rounded-full hover:bg-opacity-90 transition-all shadow-[0_0_20px_rgba(108,99,255,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mt-4 sm:mt-6">
+            <a href="#projects" className="text-center px-8 py-3 bg-primary text-white font-bold rounded-full hover:bg-opacity-90 transition-all shadow-[0_0_20px_rgba(108,99,255,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
               See My Work
             </a>
-            <a href={greeting.resumeLink} target="_blank" rel="noopener noreferrer" className="px-8 py-3 border border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <a href={greeting.resumeLink} target="_blank" rel="noopener noreferrer" className="text-center px-8 py-3 border border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
               Download Resume
             </a>
           </motion.div>

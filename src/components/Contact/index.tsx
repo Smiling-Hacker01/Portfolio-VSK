@@ -9,13 +9,13 @@ const ContactMethod = memo(({ icon: Icon, title, value, href }: any) => (
     href={href}
     target={href.startsWith('http') ? '_blank' : '_self'}
     rel={href.startsWith('http') ? 'noopener noreferrer' : ''}
-    className="flex flex-col items-center p-6 bg-surface rounded-2xl border border-border-glow hover:-translate-y-2 hover:border-primary/50 transition-all duration-300 group"
+    className="flex flex-col items-center justify-center h-full w-full px-4 py-8 bg-surface rounded-2xl border border-border-glow hover:-translate-y-2 hover:border-primary/50 transition-all duration-300 group"
   >
-    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-      <Icon className="text-2xl text-primary" />
+    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors shrink-0">
+      <Icon className="text-xl sm:text-2xl text-primary" />
     </div>
-    <h3 className="text-lg font-bold font-syne text-text-primary mb-2">{title}</h3>
-    <p className="text-sm text-text-muted font-jetbrains text-center break-all">{value}</p>
+    <h3 className="text-base sm:text-lg font-bold font-syne text-text-primary mb-2">{title}</h3>
+    <p className="text-[11px] sm:text-[13px] text-text-muted font-jetbrains text-center w-full whitespace-nowrap overflow-hidden text-ellipsis tracking-tight px-1">{value}</p>
   </a>
 ));
 
@@ -43,9 +43,9 @@ export default function Contact() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-12"
         >
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="h-full">
             <ContactMethod 
               icon={FaEnvelope} 
               title="Email" 
@@ -53,7 +53,7 @@ export default function Contact() {
               href={`mailto:${contactInfo.email}`} 
             />
           </motion.div>
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="h-full">
             <ContactMethod 
               icon={FaPhoneAlt} 
               title="Phone" 
@@ -61,7 +61,7 @@ export default function Contact() {
               href={`tel:${contactInfo.phone}`} 
             />
           </motion.div>
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="h-full">
             <ContactMethod 
               icon={FaLinkedin} 
               title="LinkedIn" 
