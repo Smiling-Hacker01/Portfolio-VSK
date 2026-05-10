@@ -56,20 +56,32 @@ export interface WorkExperience {
   experiences: Experience[];
 }
 
+export interface ProjectStat {
+  label: string;
+  value: string;
+}
+
 export interface Project {
   name: string;
+  category: "professional" | "personal";
   desc: string;
-  github: string | null;
-  link?: string;
   tags: string[];
   color: string;
-  isProfessional?: boolean;
+  github: string | null;
+  link: string | null;
+  isProfessional: boolean;
+  stats?: ProjectStat[];  // only on professional projects
 }
 
 export interface ProjectsSection {
   title: string;
   subtitle: string;
-  projects: Project[];
+  professionalTitle: string;
+  professionalBadge: string;
+  personalTitle: string;
+  personalBadge: string;
+  professionalProjects: Project[];
+  personalProjects: Project[];
 }
 
 export interface AchievementCard {

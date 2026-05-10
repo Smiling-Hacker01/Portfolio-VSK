@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { skillsSection, techStack } from '../../data/portfolio';
 import { fadeUp, staggerContainer, slideInLeft } from '../../utils/animations';
 
-import { FaNodeJs, FaDocker, FaJava, FaGitAlt } from 'react-icons/fa';
+import { FaNodeJs, FaDocker, FaJava, FaGitAlt, FaBolt } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiPostgresql, SiRedis, SiMongodb, SiMysql, SiExpress, SiPrisma } from 'react-icons/si';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -68,7 +68,7 @@ export default function Skills() {
           </motion.h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Left: Skills Bullets */}
           <motion.div
             initial="hidden"
@@ -77,14 +77,14 @@ export default function Skills() {
             variants={staggerContainer}
             className="flex flex-col justify-center"
           >
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 sm:gap-4">
               {skillsSection.skills.map((skill, i) => (
                 <motion.li 
                   key={i} 
                   variants={slideInLeft}
-                  className="text-lg text-text-muted leading-relaxed flex items-start"
+                  className="text-base sm:text-lg text-text-muted leading-relaxed flex items-start"
                 >
-                  <span className="mr-3 mt-1 text-primary">⚡</span>
+                  <FaBolt className="text-primary mr-3 mt-1.5 shrink-0" />
                   <span>{skill.replace('⚡ ', '')}</span>
                 </motion.li>
               ))}
@@ -97,7 +97,7 @@ export default function Skills() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-3 sm:grid-cols-4 gap-4"
+            className="grid grid-cols-4 sm:grid-cols-4 gap-3 sm:gap-4"
           >
             {skillsSection.softwareSkills.map((skill) => (
               <SkillIcon key={skill.name} skill={skill} />

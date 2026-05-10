@@ -9,7 +9,7 @@ const ProjectSubCard = memo(({ project, color }: { project: typeof workExperienc
   return (
     <motion.div 
       variants={fadeUp}
-      className="mt-6 p-5 md:p-6 rounded-xl bg-bg-main/50 border border-border-glow hover:border-opacity-100 transition-colors duration-300"
+      className="mt-6 p-5 md:p-6 rounded-xl bg-bg-main/50 border border-border-glow hover:border-opacity-100 transition-colors duration-300 overflow-hidden"
       style={{ borderColor: `color-mix(in srgb, ${color} 30%, transparent)` }}
     >
       <h4 className="text-lg font-jetbrains font-bold mb-4" style={{ color }}>{project.name}</h4>
@@ -18,16 +18,16 @@ const ProjectSubCard = memo(({ project, color }: { project: typeof workExperienc
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        className="flex flex-col gap-3"
+        className="flex flex-col gap-3 min-w-0 w-full"
       >
         {project.bullets.map((bullet, i) => (
           <motion.li 
             key={i} 
             variants={slideInLeft}
-            className="text-text-muted text-sm md:text-base flex items-start leading-relaxed"
+            className="text-text-muted text-sm md:text-base flex items-start leading-relaxed min-w-0"
           >
             <span className="mr-3 mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: color }}></span>
-            <span>{bullet}</span>
+            <span className="break-words min-w-0 overflow-hidden">{bullet}</span>
           </motion.li>
         ))}
       </motion.ul>
@@ -48,20 +48,20 @@ const CompanyNode = memo(({ exp }: { exp: typeof workExperience.experiences[0] }
         <motion.div 
           variants={fadeUp}
           className={styles.timelineNode} 
-          style={{ borderColor: exp.color, top: '32px' }} 
+          style={{ borderColor: exp.color, top: '28px' }} 
         />
         
-        <div className="bg-surface rounded-2xl p-6 md:p-8 border border-border-glow relative z-10 overflow-hidden group hover:border-primary/40 transition-colors duration-300">
+        <div className="bg-surface rounded-2xl p-5 sm:p-6 md:p-8 border border-border-glow relative z-10 overflow-hidden group hover:border-primary/40 transition-colors duration-300">
           <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none" style={{ backgroundColor: exp.color }}></div>
           
-          <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-            <h3 className="text-2xl font-bold font-syne text-text-primary">{exp.role}</h3>
-            <span className="text-sm font-jetbrains text-secondary mt-2 md:mt-0 px-4 py-1.5 bg-secondary/10 rounded-full border border-secondary/20 w-fit">
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold font-syne text-text-primary leading-tight">{exp.role}</h3>
+            <span className="text-sm font-jetbrains text-secondary px-3 sm:px-4 py-1.5 bg-secondary/10 rounded-full border border-secondary/20 w-fit shrink-0">
               {exp.date}
             </span>
           </motion.div>
           
-          <motion.div variants={fadeUp} className="text-lg font-medium text-text-muted mb-6 flex items-center gap-2">
+          <motion.div variants={fadeUp} className="text-base sm:text-lg font-medium text-text-muted mb-6 flex items-center gap-2">
             <FaBriefcase style={{ color: exp.color }} />
             <span style={{ color: exp.color }}>{exp.company}</span>
           </motion.div>
