@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-syne: "Syne", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+
+  --color-bg-main: #090910;
+  --color-surface: #111120;
+  --color-primary: #6c63ff;
+  --color-secondary: #00d4aa;
+  --color-warning: #f5c842;
+  --color-text-primary: #eeeef5;
+  --color-text-muted: #7777aa;
+  --color-border-glow: rgba(108, 99, 255, 0.18);
+  --color-code-green: #39d353;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+    font-family: var(--font-dm);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-syne);
+  }
+
+  code, pre, .font-jetbrains {
+    font-family: var(--font-jetbrains);
+  }
+}

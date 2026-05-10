@@ -1,0 +1,40 @@
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+@media (min-width: 768px) {
+  .timeline {
+    padding-left: 3rem;
+  }
+}
+
+.timelineLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary), transparent);
+  box-shadow: 0 0 10px var(--color-primary), 0 0 15px var(--color-secondary);
+}
+
+.timelineNode {
+  position: absolute;
+  left: -5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-bg-main);
+  border: 2px solid;
+  z-index: 1;
+}
+
+.companyCard {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.companyCard:last-child {
+  margin-bottom: 0;
+}
