@@ -52,9 +52,20 @@ const ProfessionalCard = memo(({ project }: { project: typeof projects.professio
           </div>
         </div>
         
-        <p className="text-text-muted text-sm leading-relaxed mb-5 flex-grow">
+        <p className={`text-text-muted text-sm leading-relaxed mb-4 ${project.bullets ? '' : 'flex-grow'}`}>
           {project.desc}
         </p>
+
+        {project.bullets && (
+          <ul className="space-y-1.5 mb-5 text-[13px] sm:text-sm text-text-muted leading-relaxed">
+            {project.bullets.map((bullet) => (
+              <li key={bullet} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: project.color }} />
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {project.stats && (
           <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mb-5">
@@ -109,9 +120,20 @@ const PersonalCard = memo(({ project }: { project: typeof projects.personalProje
           {project.name}
         </h3>
         
-        <p className="text-text-muted text-sm leading-relaxed mb-5 flex-grow">
+        <p className={`text-text-muted text-sm leading-relaxed mb-4 ${project.bullets ? '' : 'flex-grow'}`}>
           {project.desc}
         </p>
+
+        {project.bullets && (
+          <ul className="space-y-1.5 mb-5 text-[13px] sm:text-sm text-text-muted leading-relaxed">
+            {project.bullets.map((bullet) => (
+              <li key={bullet} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: project.color }} />
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        )}
         
         <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-5">
           {project.tags.map((tag) => (
