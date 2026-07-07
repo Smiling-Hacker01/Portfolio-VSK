@@ -65,6 +65,7 @@ export interface Project {
   name: string;
   category: "professional" | "personal";
   desc: string;
+  bullets?: string[];
   tags: string[];
   color: string;
   github: string | null;

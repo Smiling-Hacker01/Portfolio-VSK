@@ -21,8 +21,8 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary), transparent);
-  box-shadow: 0 0 10px var(--color-primary), 0 0 15px var(--color-secondary);
+  background: linear-gradient(to bottom, var(--color-secondary), var(--color-primary), rgba(108, 99, 255, 0));
+  box-shadow: 0 0 18px rgba(0, 212, 170, 0.45);
 }
 
 .timelineNode {
@@ -33,12 +33,13 @@
   border-radius: 50%;
   background-color: var(--color-bg-main);
   border: 2px solid;
-  z-index: 1;
+  box-shadow: 0 0 0 6px rgba(9, 9, 16, 0.95), 0 0 20px currentColor;
+  z-index: 2;
 }
 
 .companyCard {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .companyCard:last-child {
