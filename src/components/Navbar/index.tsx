@@ -17,24 +17,47 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Determine active section
+      const sections = navLinks.map(link => link.href.substring(1));
+      let currentSection = '';
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            currentSection = `#${section}`;
+            break;
+          }
+        }
+      }
+      if (currentSection !== activeSection) {
+        setActiveSection(currentSection);
+      }
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeSection]);
 
   return (
     <motion.header
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled ? styles.glass : 'bg-transparent py-5'
+        'absolute top-6 left-1/2 -translate-x-1/2 z-50 transition-all w-full max-w-6xl px-6',
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between gap-5">
+      <div className={cn(
+        "flex items-center justify-between gap-5 rounded-3xl border transition-all duration-500",
+        scrolled ? "bg-bg-main/60 backdrop-blur-xl border-border-glow/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)] px-5 py-3" : "bg-transparent border-transparent px-2 py-2"
+      )}>
         {/* Logo */}
         <a href="#" className="group flex items-center gap-3 text-text-primary" aria-label="Home">
           <span className="grid h-10 w-10 place-items-center rounded-xl border border-secondary/20 bg-secondary/10 text-sm font-bold font-jetbrains text-secondary shadow-[0_0_18px_rgba(0,212,170,0.12)] transition-all group-hover:border-secondary/50 group-hover:bg-secondary/15">
@@ -48,17 +71,33 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-4" aria-label="Main Navigation">
-          <ul className="flex items-center gap-1.5 m-0 p-1 list-none rounded-full border border-border-glow bg-surface/45">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className="inline-flex rounded-full px-3.5 py-2 text-xs font-bold text-text-muted transition-all hover:bg-secondary/10 hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
+          <ul className="relative flex items-center gap-1.5 m-0 p-1.5 list-none rounded-full border border-border-glow bg-surface/45">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href;
+              return (
+                <li key={link.name} className="relative">
+                  <a
+                    href={link.href}
+                    onClick={() => setActiveSection(link.href)}
+                    className={cn(
+                      "relative z-10 inline-flex rounded-full px-4 py-2.5 text-[13px] font-bold transition-all duration-300 focus-visible:outline-none",
+                      isActive 
+                        ? "text-secondary" 
+                        : "text-text-muted hover:text-secondary hover:bg-secondary/20"
+                    )}
+                  >
+                    {link.name}
+                  </a>
+                  {isActive && (
+                    <motion.div
+                      layoutId="navActiveIndicator"
+                      className="absolute inset-0 z-0 rounded-full bg-secondary/15 border border-secondary/30"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                </li>
+              );
+            })}
           </ul>
           
           <a

@@ -74,21 +74,48 @@ export const workExperience: WorkExperience = {
       color: "#6c63ff",
       projects: [
         {
-          name: "Enterprise Billing & Payments Platform",
+          taxonomy: "01 / BILLING INFRASTRUCTURE",
+          name: "AVA-SmartBill",
+          subtitle: "Enterprise Multi-Tenant Billing Platform",
+          metrics: [
+            { label: "Enterprise Tenants", value: "100+" },
+            { label: "Monthly Transactions", value: "50K+" },
+            { label: "Platform Uptime", value: "99.9%" },
+            { label: "Payment Failure Reduction", value: "40%" },
+            { label: "Processing Latency", value: "~4s" },
+            { label: "Tax Jurisdictions", value: "15+" }
+          ],
           bullets: [
-            "Owned backend design for a multi-tenant billing platform, decomposing tenant isolation, subscription lifecycle, taxation, invoicing, payments, and audit requirements into reliable service boundaries.",
-            "Designed extensible tax and payment workflows using Node.js, TypeScript, PostgreSQL, Redis, Prisma, and background workers, improving maintainability and enabling scalable feature delivery.",
-            "Implemented secure payment handling with webhook verification, idempotent transaction processing, retry-safe jobs, and operational audit trails to reduce failure scenarios and strengthen financial reliability.",
-            "Collaborated across product and QA to validate edge cases around billing states, access control, and reconciliation, improving confidence in production releases.",
+            "Designed and Developed the backend architecture for a high-availability SaaS billing platform. Designed the core system around Node.js, TypeScript, PostgreSQL, and Redis, ensuring strict tenant isolation.",
+            "Tackled complex financial logic by building a proprietary GST/VAT tax engine capable of supporting global jurisdictions with compound and exclusive taxation rules.",
+            "Engineered an event-driven payment pipeline using BullMQ with automated dunning workflows.",
+            "Integrated a multi-gateway abstraction layer (Razorpay, Stripe, PayU) that dramatically improved checkout reliability through idempotent transaction handling and strict webhook verification.",
+            "Took ownership of platform security by designing a SOC 2-aligned architecture. Implemented immutable audit trails, envelope encryption, and robust JWT/RBAC controls, ensuring zero critical vulnerabilities across sensitive financial data flows."
+          ],
+          links: [
+            { label: "Visit Live Site", url: "https://gobill.ai/landing", type: "website" }
           ],
         },
         {
-          name: "Secure Content & Data Platform",
+          taxonomy: "02 / SOCIAL PLATFORM",
+          name: "TracePlus",
+          subtitle: "International Social & Community Platform",
+          metrics: [
+            { label: "Active Users", value: "100K+" },
+            { label: "Database Load Reduction", value: "60%" },
+            { label: "Feed Load Time Reduction", value: "70%" },
+            { label: "Response Times", value: "<100ms" }
+          ],
           bullets: [
-            "Improved data integrity and privacy controls by isolating user-specific queues and strengthening backend safeguards around session transitions and event processing.",
-            "Designed a resilient event delivery architecture with real-time emission, backend relay handling, batching, and audit-friendly persistence to improve observability and downstream consistency.",
-            "Built an automated content moderation and takedown workflow that validates media before expensive processing stages, reduces wasted compute, and improves operational governance.",
-            "Optimized high-traffic backend paths with Redis caching, fallback strategies, cursor pagination, and database view design to improve responsiveness and reduce database pressure.",
+            "Led the backend infrastructure design for a high-traffic social platform. Focused on scalability and observability, I architected a hybrid event-tracking system with real-time streaming to Amplitude and Braze, utilizing a custom relay adapter for optimized Firebase audit logging.",
+            "Discovered and patched a severe cross-user event isolation vulnerability related to offline attribution. I fundamentally redesigned the event flow by introducing per-user isolated queues, completely eliminating data contamination risks and safeguarding user privacy during reauthentication.",
+            "Built an automated copyright moderation pipeline integrated with Audible Magic. By leveraging PostgreSQL triggers for pre-transcoding scans, I significantly reduced wasted compute on blocked media. Engineered a scalable schema for ISRC metadata and implemented Fail-Open governance to gracefully handle third-party API outages.",
+            "Drove massive performance gains across the platform through strategic Redis caching and in-memory fallbacks. Re-architected the main feed delivery with cursor-based pagination and materialized views."
+          ],
+          links: [
+            { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.trace.plus&pcampaignid=web_share", type: "playstore" },
+            { label: "App Store", url: "https://apps.apple.com/us/app/trace-afro-urban-culture/id6445990418", type: "appstore" },
+            { label: "Website", url: "https://trace.plus/en/app", type: "website" }
           ],
         },
       ],
@@ -97,14 +124,14 @@ export const workExperience: WorkExperience = {
       role: "Full Stack Developer Intern",
       company: "Cognifyz Technologies",
       companyUrl: "#",
-      date: "Jul 2025 – Aug 2025 · Remote",
+      date: "Jul 2025 – Dec 2025 · Remote",
       color: "#00d4aa",
       projects: [
         {
           name: "MERN Stack Development",
           bullets: [
-            "Delivered multiple full-stack applications from requirements through deployment, translating broad product goals into scoped milestones, API contracts, and maintainable UI flows.",
-            "Implemented authentication, role-based access control, validation, and reusable backend patterns across projects, improving security posture and delivery consistency.",
+            "Owned the end-to-end delivery of five production-grade full-stack applications using the MERN stack. Managed the entire lifecycle from initial architectural planning and system design through development and final deployment.",
+            "Focused on establishing secure and scalable foundations across all projects, consistently implementing JWT-based authentication, Role-Based Access Control (RBAC), and robust backend validation patterns to ensure a consistent, professional security posture."
           ],
         },
       ],
@@ -187,19 +214,35 @@ export const projects: ProjectsSection = {
   // ── PERSONAL PROJECTS ─────────────────────────────────────────────
   personalProjects: [
     {
-      name: "Divish - The Secret Space",
+      name: "The Secret Space (Divish)",
       category: "personal",
-      desc: "Completed secure, real-time couples platform with a React Native Expo mobile frontend for private communication, shared memories, emotional connection, and relationship-focused interactions.",
+      desc: "A secure, end-to-end encrypted real-time platform designed specifically for couples to share a private digital space. It solves the problem of scattered memories and insecure communication by providing a unified, highly protected environment.",
       bullets: [
-        "Built the mobile app frontend with React Native and Expo, delivering WhatsApp-style one-to-one chat, live mood updates, synchronized dashboards, anniversary tracking, and contextual Firebase push notifications.",
-        "Designed a biometric-protected private vault with password fallback, Cloudinary-backed media storage, and secure access patterns for sensitive memories.",
-        "Implemented coupons, favors, shared diary, reactions, and LoveBot scheduled messaging with lifecycle workflows powered by backend jobs and real-time sync.",
-        "Secured the platform with JWT access and refresh tokens, bcrypt password hashing, Prisma-backed PostgreSQL persistence, Redis coordination, and device-level biometric protection where available.",
+        "Architected the secure backend infrastructure using Node.js, PostgreSQL, and Redis, integrating RSA/AES-GCM encryption to ensure zero-knowledge privacy for all messages and shared media.",
+        "Engineered reliable real-time communication flows utilizing Socket.IO and Firebase Cloud Messaging, establishing a robust offline-first synchronization strategy for seamless user experiences.",
+        "Designed and implemented a biometric-protected private vault with Cloudinary-backed media storage, handling complex state synchronization across devices.",
+        "Built scalable background processing queues to reliably deliver scheduled messaging, idempotent push notifications, and data synchronization without impacting core API latency.",
       ],
       github: "https://github.com/Smiling-Hacker01/Project-Divish",
       link: "https://expo.dev/accounts/smiling-hacker/projects/secret-space-mobile/builds/1165def6-4e77-4ec0-9769-50998a39bc96",
-      tags: ["React Native", "Expo", "Node.js", "Express", "PostgreSQL", "Prisma", "Redis", "Cloudinary", "Firebase"],
+      tags: ["Node.js", "PostgreSQL", "Redis", "Socket.IO", "React Native", "Firebase", "Encryption"],
       color: "#ff5c8a",
+      isProfessional: false,
+    },
+    {
+      name: "Health Management System (Health Sewa)",
+      category: "personal",
+      desc: "A comprehensive backend service for a privacy-conscious healthcare platform, built to centralize emergency discovery, blood donor management, and personalized health tracking.",
+      bullets: [
+        "Engineered scalable RESTful APIs from the ground up, utilizing Node.js and MySQL to deliver highly responsive endpoints for location-based hospital discovery and health resource access.",
+        "Designed strict, secure authentication workflows leveraging JWTs, alongside automated email notification pipelines to keep users informed during critical health events.",
+        "Optimized database architectures for rapid querying of donor and recipient registries, ensuring fast emergency matching while prioritizing data isolation and maintainability.",
+        "Owned the entire backend lifecycle—from initial schema design to API deployment—focusing on long-term scalability and robust error handling.",
+      ],
+      github: "https://github.com/Smiling-Hacker01",
+      link: "https://healthsewa1.netlify.app",
+      tags: ["Node.js", "Express", "MySQL", "JWT", "REST APIs"],
+      color: "#00d4aa",
       isProfessional: false,
     },
     {
@@ -214,24 +257,8 @@ export const projects: ProjectsSection = {
       ],
       github: "https://github.com/Smiling-Hacker01/Raghvi-V2",
       link: null,
-      tags: ["Python 3.13", "FastAPI", "SQLAlchemy Async", "PostgreSQL", "Alembic", "Docker", "uv", "Ruff", "pytest"],
+      tags: ["Python 3.13", "FastAPI", "SQLAlchemy Async", "PostgreSQL", "Docker"],
       color: "#8bdfc7",
-      isProfessional: false,
-    },
-    {
-      name: "Health Sewa",
-      category: "personal",
-      desc: "Developed a privacy-conscious health management platform for emergency discovery, care planning, educational content, and donor-recipient connectivity.",
-      bullets: [
-        "Built discovery flows for blood banks, nearby hospitals, doctors, health articles, and smart meal planning to centralize essential health resources.",
-        "Implemented donor and recipient registration workflows to support faster emergency matching and clearer user journeys during urgent scenarios.",
-        "Improved backend reliability and responsiveness through API design, query optimization, indexing, and caching strategies.",
-        "Secured core flows with JWT-based authentication, validation, and structured REST APIs backed by a MySQL datastore.",
-      ],
-      github: "https://github.com/Smiling-Hacker01",
-      link: "https://healthsewa1.netlify.app",
-      tags: ["Node.js", "Express", "MySQL", "JWT", "REST APIs"],
-      color: "#00d4aa",
       isProfessional: false,
     },
     {

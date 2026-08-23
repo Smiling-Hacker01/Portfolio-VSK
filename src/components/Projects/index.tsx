@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { projects } from '../../data/portfolio';
 import { fadeUp, staggerContainer } from '../../utils/animations';
-import { FaGithub, FaExternalLinkAlt, FaLock, FaBuilding, FaCodeBranch } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaLock, FaBuilding, FaCodeBranch, FaGooglePlay, FaApple, FaGlobe } from 'react-icons/fa';
 import { useCountUp } from '../../hooks/useCountUp';
 
 const StatChip = ({ stat }: { stat: { label: string; value: string } }) => {
@@ -86,8 +86,36 @@ const ProfessionalCard = memo(({ project }: { project: typeof projects.professio
           ))}
         </div>
         
-        <div className="flex items-center justify-end mt-auto pt-4 border-t border-border-glow group/lock">
-          <div className="relative flex items-center justify-center">
+        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border-glow">
+          {project.links && project.links.length > 0 ? (
+            <div className="flex gap-2">
+              {project.links.map((link, i) => {
+                const isPlay = link.type === 'playstore';
+                const isApple = link.type === 'appstore';
+                const isWeb = link.type === 'website';
+                return (
+                  <a 
+                    key={i} 
+                    href={link.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] sm:text-xs font-bold rounded-lg transition-all duration-300 border bg-surface hover:-translate-y-0.5"
+                    style={{
+                      color: isPlay ? '#00e676' : isApple ? '#00b0ff' : project.color,
+                      borderColor: isPlay ? 'rgba(0,230,118,0.2)' : isApple ? 'rgba(0,176,255,0.2)' : `color-mix(in srgb, ${project.color} 30%, transparent)`
+                    }}
+                  >
+                    {isPlay ? <FaGooglePlay /> : isApple ? <FaApple className="text-sm" /> : <FaGlobe />}
+                    <span>{link.label}</span>
+                  </a>
+                );
+              })}
+            </div>
+          ) : (
+            <div />
+          )}
+
+          <div className="relative flex items-center justify-center group/lock">
             <FaLock className="text-text-muted text-lg hover:text-white transition-colors cursor-help" />
             <div className="absolute bottom-full right-0 mb-2 w-max px-2 py-1 bg-surface border border-border-glow text-xs text-white rounded opacity-0 group-hover/lock:opacity-100 transition-opacity pointer-events-none">
               Private / Proprietary
@@ -146,17 +174,43 @@ const PersonalCard = memo(({ project }: { project: typeof projects.personalProje
           ))}
         </div>
         
-        <div className="flex items-center gap-4 mt-auto pt-4 border-t border-border-glow">
-          {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-white transition-colors" aria-label="GitHub Repository">
-              <FaGithub className="text-xl" />
-            </a>
-          )}
-          {project.link && (
-            <a href={project.link.startsWith('http') ? project.link : `https://${project.link}`} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-secondary transition-colors" aria-label="Live Demo">
-              <FaExternalLinkAlt className="text-lg" />
-            </a>
-          )}
+        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border-glow">
+          <div className="flex gap-2">
+            {project.links?.map((link, i) => {
+              const isPlay = link.type === 'playstore';
+              const isApple = link.type === 'appstore';
+              const isWeb = link.type === 'website';
+              return (
+                <a 
+                  key={i} 
+                  href={link.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] sm:text-xs font-bold rounded-lg transition-all duration-300 border bg-surface hover:-translate-y-0.5"
+                  style={{
+                    color: isPlay ? '#00e676' : isApple ? '#00b0ff' : project.color,
+                    borderColor: isPlay ? 'rgba(0,230,118,0.2)' : isApple ? 'rgba(0,176,255,0.2)' : `color-mix(in srgb, ${project.color} 30%, transparent)`
+                  }}
+                >
+                  {isPlay ? <FaGooglePlay /> : isApple ? <FaApple className="text-sm" /> : <FaGlobe />}
+                  <span>{link.label}</span>
+                </a>
+              );
+            })}
+          </div>
+
+          <div className="flex items-center gap-4">
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-white transition-colors" aria-label="GitHub Repository">
+                <FaGithub className="text-xl" />
+              </a>
+            )}
+            {project.link && (
+              <a href={project.link.startsWith('http') ? project.link : `https://${project.link}`} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-secondary transition-colors" aria-label="Live Demo">
+                <FaExternalLinkAlt className="text-lg" />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

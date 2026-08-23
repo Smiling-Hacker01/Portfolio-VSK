@@ -3,40 +3,112 @@ import { motion } from 'framer-motion';
 import { workExperience } from '../../data/portfolio';
 import { fadeUp, staggerContainer, slideInLeft } from '../../utils/animations';
 import styles from './Experience.module.css';
-import { FaBriefcase, FaCalendarAlt, FaCodeBranch, FaLayerGroup } from 'react-icons/fa';
+import { FaBriefcase, FaCalendarAlt, FaLayerGroup, FaGooglePlay, FaApple, FaExternalLinkAlt } from 'react-icons/fa';
+import { useCountUp } from '../../hooks/useCountUp';
 
-const ProjectSubCard = memo(({ project, color }: { project: typeof workExperience.experiences[0]['projects'][0], color: string }) => {
+const StatChip = ({ stat }: { stat: { label: string; value: string } }) => {
+  const numericMatch = stat.value.match(/^([<~]?)(\d+)(.*)/);
+  const prefix = numericMatch ? numericMatch[1] : '';
+  const numericPart = numericMatch ? parseInt(numericMatch[2], 10) : null;
+  const suffix = numericMatch ? numericMatch[3] : null;
+
+  const { count, ref } = useCountUp(numericPart ?? 0, 2000, numericPart !== null);
+
+  return (
+    <div ref={ref as any} className="flex flex-col items-start p-3 sm:p-4 rounded-xl bg-surface/40 border border-border-glow">
+      <div className="text-xl sm:text-2xl font-bold font-syne text-secondary mb-1 leading-none">
+        {numericPart !== null ? `${prefix}${count}${suffix}` : stat.value}
+      </div>
+      <div className="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider font-jetbrains leading-tight">
+        {stat.label}
+      </div>
+    </div>
+  );
+};
+
+const CaseStudyCard = memo(({ project, color }: { project: typeof workExperience.experiences[0]['projects'][0], color: string }) => {
   return (
     <motion.div 
       variants={fadeUp}
-      className="relative overflow-hidden rounded-xl border border-border-glow bg-bg-main/55 p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-bg-main/75"
-      style={{ borderColor: `color-mix(in srgb, ${color} 30%, transparent)` }}
+      className="relative overflow-hidden rounded-2xl border border-border-glow bg-bg-main/40 p-6 md:p-8 transition-all duration-300 hover:border-border-glow/80 group"
+      style={{ '--accent': color } as React.CSSProperties}
     >
-      <div className="absolute left-0 top-0 h-full w-[3px]" style={{ backgroundColor: color }} />
-      <div className="mb-4 flex items-center gap-3">
-        <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-surface border border-border-glow">
-          <FaCodeBranch className="text-sm" style={{ color }} />
-        </div>
-        <h4 className="text-base sm:text-lg font-syne font-bold text-text-primary leading-tight">{project.name}</h4>
+      {/* Decorative top accent line */}
+      <div className="absolute top-0 left-0 w-full h-1 opacity-60" style={{ background: `linear-gradient(90deg, ${color}, transparent)` }} />
+
+      {/* Header section with taxonomy and identity */}
+      <div className="mb-8">
+        {project.taxonomy && (
+          <div className="mb-4 inline-flex items-center gap-3">
+            <span className="text-xs font-bold text-text-muted uppercase tracking-[0.2em] font-jetbrains">{project.taxonomy}</span>
+            <div className="h-px w-12 bg-border-glow"></div>
+          </div>
+        )}
+        <h4 className="text-2xl sm:text-3xl font-syne font-bold text-text-primary leading-tight mb-2" style={{ color }}>{project.name}</h4>
+        {project.subtitle && (
+          <p className="text-sm sm:text-base text-text-muted font-medium">{project.subtitle}</p>
+        )}
       </div>
+
+      {/* Metrics Section */}
+      {project.metrics && project.metrics.length > 0 && (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+          {project.metrics.map((stat, i) => (
+            <StatChip key={i} stat={stat} />
+          ))}
+        </div>
+      )}
+
+      {/* Bullets */}
       <motion.ul 
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        className="flex flex-col gap-3 min-w-0 w-full"
+        className="flex flex-col gap-4 min-w-0 w-full mb-8"
       >
         {project.bullets.map((bullet, i) => (
           <motion.li 
             key={i} 
             variants={slideInLeft}
-            className="text-text-muted text-sm md:text-[15px] flex items-start leading-relaxed min-w-0"
+            className="text-text-muted text-sm md:text-base flex items-start leading-relaxed min-w-0 group/bullet"
           >
-            <span className="mr-3 mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: color }}></span>
+            <span className="mr-4 mt-2 w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-300 group-hover/bullet:scale-150" style={{ backgroundColor: color }}></span>
             <span className="break-words min-w-0 overflow-hidden">{bullet}</span>
           </motion.li>
         ))}
       </motion.ul>
+
+      {/* Links / CTAs */}
+      {project.links && project.links.length > 0 && (
+        <motion.div 
+          variants={fadeUp}
+          className="flex flex-wrap items-center gap-3 pt-6 border-t border-border-glow"
+        >
+          {project.links.map((link, i) => {
+            const isPlay = link.type === 'playstore';
+            const isApple = link.type === 'appstore';
+            
+            return (
+              <a 
+                key={i} 
+                href={link.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-[13px] font-bold rounded-xl transition-all duration-300 border bg-surface/50 hover:bg-surface hover:-translate-y-1 hover:shadow-lg"
+                style={{
+                  color: isPlay ? '#00e676' : isApple ? '#00b0ff' : color,
+                  borderColor: isPlay ? 'rgba(0,230,118,0.2)' : isApple ? 'rgba(0,176,255,0.2)' : `color-mix(in srgb, ${color} 30%, transparent)`,
+                  boxShadow: `0 4px 20px color-mix(in srgb, ${isPlay ? '#00e676' : isApple ? '#00b0ff' : color} 10%, transparent)`
+                }}
+              >
+                {isPlay ? <FaGooglePlay className="text-base" /> : isApple ? <FaApple className="text-lg" /> : <FaExternalLinkAlt />}
+                <span>{link.label}</span>
+              </a>
+            );
+          })}
+        </motion.div>
+      )}
     </motion.div>
   );
 });
@@ -80,9 +152,9 @@ const CompanyNode = memo(({ exp }: { exp: typeof workExperience.experiences[0] }
             <span>Selected ownership areas</span>
           </motion.div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             {exp.projects.map((project, i) => (
-              <ProjectSubCard key={i} project={project} color={exp.color} />
+              <CaseStudyCard key={i} project={project} color={exp.color} />
             ))}
           </div>
         </div>
