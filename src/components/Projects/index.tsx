@@ -92,7 +92,6 @@ const ProfessionalCard = memo(({ project }: { project: typeof projects.professio
               {project.links.map((link, i) => {
                 const isPlay = link.type === 'playstore';
                 const isApple = link.type === 'appstore';
-                const isWeb = link.type === 'website';
                 return (
                   <a 
                     key={i} 
@@ -179,7 +178,6 @@ const PersonalCard = memo(({ project }: { project: typeof projects.personalProje
             {project.links?.map((link, i) => {
               const isPlay = link.type === 'playstore';
               const isApple = link.type === 'appstore';
-              const isWeb = link.type === 'website';
               return (
                 <a 
                   key={i} 

@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowUpRight, FiDownload, FiMenu, FiX } from 'react-icons/fi';
 import { greeting } from '../../data/portfolio';
 import { cn } from '../../utils/cn';
-import styles from './Navbar.module.css';
 
 const navLinks = [
   { name: 'Skills', href: '#skills' },
