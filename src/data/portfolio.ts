@@ -14,7 +14,7 @@ export const greeting: Greeting = {
   name: "Vishal",
   title: "Hi, I'm Vishal 👋",
   subtitle: "Backend Engineer focused on designing reliable, scalable, and production-grade SaaS systems. Experienced in architecting multi-tenant platforms, optimizing backend performance, and solving complex infrastructure challenges at scale.",
-  resumeLink: "https://docs.google.com/document/d/1Oy_xUv6Qn6IEXuINV_PkOdS_ciXeO_ZU/edit?usp=sharing&ouid=113691555438746256913&rtpof=true&sd=true", // replace with Google Drive link to resume PDF
+  resumeLink: "https://docs.google.com/document/d/11W5QpFQFb1EGMqoy0zeFE1Ols0pUZ0ny/edit?usp=sharing&ouid=113691555438746256913&rtpof=true&sd=true",
 };
 
 export const socialLinks: SocialLinks = {
