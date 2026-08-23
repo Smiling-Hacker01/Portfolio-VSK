@@ -36,9 +36,19 @@ export interface TechStack {
   experience: TechStackItem[];
 }
 
+export interface LinkItem {
+  label: string;
+  url: string;
+  type: 'playstore' | 'appstore' | 'website' | 'github';
+}
+
 export interface ProjectBullet {
-  name: string;
+  taxonomy?: string; // e.g. "01 / BILLING INFRASTRUCTURE"
+  name: string; // e.g. "AVA-SmartBill"
+  subtitle?: string; // e.g. "Enterprise Multi-Tenant Billing Platform"
   bullets: string[];
+  metrics?: ProjectStat[]; // Reusing ProjectStat which is {label: string, value: string}
+  links?: LinkItem[];
 }
 
 export interface Experience {
@@ -70,6 +80,7 @@ export interface Project {
   color: string;
   github: string | null;
   link: string | null;
+  links?: LinkItem[];
   isProfessional: boolean;
   stats?: ProjectStat[];  // only on professional projects
 }
