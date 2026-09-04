@@ -111,10 +111,10 @@ export interface Achievements {
 export interface School {
   schoolName: string;
   subHeader: string;
-  duration: string;
-  location: string;
-  desc: string;
-  descBullets: string[];
+  status: string;
+  location?: string;
+  summary?: string;
+  highlights?: string[];
 }
 
 export interface EducationSection {
