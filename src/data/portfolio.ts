@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   Greeting,
   SocialLinks,
   SkillSection,
@@ -328,13 +328,14 @@ export const education: EducationSection = {
     {
       schoolName: "St. Andrews Institute of Technology & Management Studies",
       subHeader: "Bachelor of Computer Applications (BCA)",
-      duration: "Expected 2026",
-      location: "Haryana, India",
-      desc: "Focused on distributed systems, software architecture, and backend engineering. Active in competitive programming and college-level hackathons.",
-      descBullets: [
-        "Ranked 1st college-wide in Problem Solving & Bug Finding Competition",
-        "2nd Prize in Annual Project Competition",
-      ],
+      status: "Graduated 2026",
+      summary: "Focused on distributed systems, software architecture, and backend engineering.",
+    },
+    {
+      schoolName: "Indira Gandhi National Open University (IGNOU)",
+      subHeader: "Master of Computer Applications (MCA)",
+      status: "Admitted 2026 · Expected 2028",
+      summary: "Pursuing MCA through IGNOU to deepen software engineering and systems knowledge.",
     },
   ],
 };

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+﻿import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { projects } from '../../data/portfolio';
 import { fadeUp, staggerContainer } from '../../utils/animations';
@@ -42,82 +42,86 @@ const ProfessionalCard = memo(({ project }: { project: typeof projects.professio
       <div className="h-[3px] w-full" style={{ backgroundColor: project.color }}></div>
       
       <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow relative z-10">
-        <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-syne leading-tight" style={{ color: project.color }}>
-            {project.name}
-          </h3>
-          <div className="flex items-center gap-1 bg-bg-main/50 px-2 py-1 rounded border border-border-glow shrink-0">
-            <FaBuilding className="text-text-muted text-[9px]" />
-            <span className="text-[9px] sm:text-[10px] text-text-muted uppercase tracking-wider font-jetbrains">{projects.professionalBadge}</span>
-          </div>
-        </div>
-        
-        <p className={`text-text-muted text-sm leading-relaxed mb-4 ${project.bullets ? '' : 'flex-grow'}`}>
-          {project.desc}
-        </p>
-
-        {project.bullets && (
-          <ul className="space-y-1.5 mb-5 text-[13px] sm:text-sm text-text-muted leading-relaxed">
-            {project.bullets.map((bullet) => (
-              <li key={bullet} className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: project.color }} />
-                <span>{bullet}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {project.stats && (
-          <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mb-5">
-            {project.stats.map((stat, i) => (
-              <StatChip key={i} stat={stat} />
-            ))}
-          </div>
-        )}
-        
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tags.map((tag) => (
-            <span 
-              key={tag} 
-              className="px-2.5 py-1 text-xs font-jetbrains bg-secondary/10 text-secondary border border-secondary/20 rounded-md"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border-glow">
-          {project.links && project.links.length > 0 ? (
-            <div className="flex gap-2">
-              {project.links.map((link, i) => {
-                const isPlay = link.type === 'playstore';
-                const isApple = link.type === 'appstore';
-                return (
-                  <a 
-                    key={i} 
-                    href={link.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] sm:text-xs font-bold rounded-lg transition-all duration-300 border bg-surface hover:-translate-y-0.5"
-                    style={{
-                      color: isPlay ? '#00e676' : isApple ? '#00b0ff' : project.color,
-                      borderColor: isPlay ? 'rgba(0,230,118,0.2)' : isApple ? 'rgba(0,176,255,0.2)' : `color-mix(in srgb, ${project.color} 30%, transparent)`
-                    }}
-                  >
-                    {isPlay ? <FaGooglePlay /> : isApple ? <FaApple className="text-sm" /> : <FaGlobe />}
-                    <span>{link.label}</span>
-                  </a>
-                );
-              })}
+        <div className="flex-grow flex flex-col">
+          <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-syne leading-tight" style={{ color: project.color }}>
+              {project.name}
+            </h3>
+            <div className="flex items-center gap-1 bg-bg-main/50 px-2 py-1 rounded border border-border-glow shrink-0">
+              <FaBuilding className="text-text-muted text-[9px]" />
+              <span className="text-[9px] sm:text-[10px] text-text-muted uppercase tracking-wider font-jetbrains">{projects.professionalBadge}</span>
             </div>
-          ) : (
-            <div />
+          </div>
+          
+          <p className="text-text-muted text-sm leading-relaxed mb-4">
+            {project.desc}
+          </p>
+
+          {project.bullets && (
+            <ul className="space-y-1.5 mb-5 text-[13px] sm:text-sm text-text-muted leading-relaxed">
+              {project.bullets.map((bullet) => (
+                <li key={bullet} className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: project.color }} />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
           )}
 
-          <div className="relative flex items-center justify-center group/lock">
-            <FaLock className="text-text-muted text-lg hover:text-white transition-colors cursor-help" />
-            <div className="absolute bottom-full right-0 mb-2 w-max px-2 py-1 bg-surface border border-border-glow text-xs text-white rounded opacity-0 group-hover/lock:opacity-100 transition-opacity pointer-events-none">
-              Private / Proprietary
+          {project.stats && (
+            <div className="grid grid-cols-3 gap-2 mb-5">
+              {project.stats.map((stat, i) => (
+                <StatChip key={i} stat={stat} />
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="mt-auto pt-4 flex flex-col gap-4">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            {project.tags.map((tag) => (
+              <span 
+                key={tag} 
+                className="px-2 sm:px-2.5 py-1 text-xs font-jetbrains bg-secondary/10 text-secondary border border-secondary/20 rounded-md"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between pt-4 border-t border-border-glow">
+            {project.links && project.links.length > 0 ? (
+              <div className="flex gap-2">
+                {project.links.map((link, i) => {
+                  const isPlay = link.type === 'playstore';
+                  const isApple = link.type === 'appstore';
+                  return (
+                    <a 
+                      key={i} 
+                      href={link.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] sm:text-xs font-bold rounded-lg transition-all duration-300 border bg-surface hover:-translate-y-0.5"
+                      style={{
+                        color: isPlay ? '#00e676' : isApple ? '#00b0ff' : project.color,
+                        borderColor: isPlay ? 'rgba(0,230,118,0.2)' : isApple ? 'rgba(0,176,255,0.2)' : `color-mix(in srgb, ${project.color} 30%, transparent)`
+                      }}
+                    >
+                      {isPlay ? <FaGooglePlay /> : isApple ? <FaApple className="text-sm" /> : <FaGlobe />}
+                      <span>{link.label}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            ) : (
+              <div />
+            )}
+
+            <div className="relative flex items-center justify-center group/lock">
+              <FaLock className="text-text-muted text-lg hover:text-white transition-colors cursor-help" />
+              <div className="absolute bottom-full right-0 mb-2 w-max px-2 py-1 bg-surface border border-border-glow text-xs text-white rounded opacity-0 group-hover/lock:opacity-100 transition-opacity pointer-events-none">
+                Private / Proprietary
+              </div>
             </div>
           </div>
         </div>
@@ -143,71 +147,75 @@ const PersonalCard = memo(({ project }: { project: typeof projects.personalProje
       <div className="h-[3px] w-full" style={{ backgroundColor: project.color }}></div>
       
       <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow relative z-10">
-        <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-syne mb-3 leading-tight" style={{ color: project.color }}>
-          {project.name}
-        </h3>
-        
-        <p className={`text-text-muted text-sm leading-relaxed mb-4 ${project.bullets ? '' : 'flex-grow'}`}>
-          {project.desc}
-        </p>
+        <div className="flex-grow flex flex-col">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-syne mb-3 leading-tight" style={{ color: project.color }}>
+            {project.name}
+          </h3>
+          
+          <p className="text-text-muted text-sm leading-relaxed mb-4">
+            {project.desc}
+          </p>
 
-        {project.bullets && (
-          <ul className="space-y-1.5 mb-5 text-[13px] sm:text-sm text-text-muted leading-relaxed">
-            {project.bullets.map((bullet) => (
-              <li key={bullet} className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: project.color }} />
-                <span>{bullet}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-        
-        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-5">
-          {project.tags.map((tag) => (
-            <span 
-              key={tag} 
-              className="px-2 sm:px-2.5 py-1 text-xs font-jetbrains bg-secondary/10 text-secondary border border-secondary/20 rounded-md"
-            >
-              {tag}
-            </span>
-          ))}
+          {project.bullets && (
+            <ul className="space-y-1.5 mb-5 text-[13px] sm:text-sm text-text-muted leading-relaxed">
+              {project.bullets.map((bullet) => (
+                <li key={bullet} className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: project.color }} />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border-glow">
-          <div className="flex gap-2">
-            {project.links?.map((link, i) => {
-              const isPlay = link.type === 'playstore';
-              const isApple = link.type === 'appstore';
-              return (
-                <a 
-                  key={i} 
-                  href={link.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] sm:text-xs font-bold rounded-lg transition-all duration-300 border bg-surface hover:-translate-y-0.5"
-                  style={{
-                    color: isPlay ? '#00e676' : isApple ? '#00b0ff' : project.color,
-                    borderColor: isPlay ? 'rgba(0,230,118,0.2)' : isApple ? 'rgba(0,176,255,0.2)' : `color-mix(in srgb, ${project.color} 30%, transparent)`
-                  }}
-                >
-                  {isPlay ? <FaGooglePlay /> : isApple ? <FaApple className="text-sm" /> : <FaGlobe />}
-                  <span>{link.label}</span>
-                </a>
-              );
-            })}
+        <div className="mt-auto pt-4 flex flex-col gap-4">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            {project.tags.map((tag) => (
+              <span 
+                key={tag} 
+                className="px-2 sm:px-2.5 py-1 text-xs font-jetbrains bg-secondary/10 text-secondary border border-secondary/20 rounded-md"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
+          
+          <div className="flex items-center justify-between pt-4 border-t border-border-glow">
+            <div className="flex gap-2">
+              {project.links?.map((link, i) => {
+                const isPlay = link.type === 'playstore';
+                const isApple = link.type === 'appstore';
+                return (
+                  <a 
+                    key={i} 
+                    href={link.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] sm:text-xs font-bold rounded-lg transition-all duration-300 border bg-surface hover:-translate-y-0.5"
+                    style={{
+                      color: isPlay ? '#00e676' : isApple ? '#00b0ff' : project.color,
+                      borderColor: isPlay ? 'rgba(0,230,118,0.2)' : isApple ? 'rgba(0,176,255,0.2)' : `color-mix(in srgb, ${project.color} 30%, transparent)`
+                    }}
+                  >
+                    {isPlay ? <FaGooglePlay /> : isApple ? <FaApple className="text-sm" /> : <FaGlobe />}
+                    <span>{link.label}</span>
+                  </a>
+                );
+              })}
+            </div>
 
-          <div className="flex items-center gap-4">
-            {project.github && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-white transition-colors" aria-label="GitHub Repository">
-                <FaGithub className="text-xl" />
-              </a>
-            )}
-            {project.link && (
-              <a href={project.link.startsWith('http') ? project.link : `https://${project.link}`} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-secondary transition-colors" aria-label="Live Demo">
-                <FaExternalLinkAlt className="text-lg" />
-              </a>
-            )}
+            <div className="flex items-center gap-4 ml-auto">
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-white transition-colors" aria-label="GitHub Repository">
+                  <FaGithub className="text-xl" />
+                </a>
+              )}
+              {project.link && (
+                <a href={project.link.startsWith('http') ? project.link : `https://${project.link}`} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-secondary transition-colors" aria-label="Live Demo">
+                  <FaExternalLinkAlt className="text-lg" />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -258,7 +266,7 @@ export default function Projects() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"
           >
             {projects.professionalProjects.map((project, i) => (
               <ProfessionalCard key={i} project={project} />
@@ -288,7 +296,7 @@ export default function Projects() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"
           >
             {projects.personalProjects.map((project, i) => (
               <PersonalCard key={i} project={project} />

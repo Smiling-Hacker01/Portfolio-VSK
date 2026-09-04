@@ -58,7 +58,7 @@ export default function Hero() {
   ]);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-16 sm:pt-20 pb-10 overflow-hidden" id="hero">
+    <section className="relative min-h-screen flex items-center pt-8 sm:pt-20 pb-10 overflow-hidden" id="hero">
       <div className={styles.dotGrid} />
       <div className={styles.glow} />
       

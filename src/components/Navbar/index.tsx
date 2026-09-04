@@ -51,7 +51,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={cn(
-        'absolute top-6 left-1/2 -translate-x-1/2 z-50 transition-all w-full max-w-6xl px-6',
+        'relative z-50 mx-auto mt-4 w-full max-w-6xl px-4 transition-all sm:px-6 lg:absolute lg:top-6 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2',
       )}
     >
       <div className={cn(
