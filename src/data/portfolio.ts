@@ -162,6 +162,7 @@ export const workExperience: WorkExperience = {
             "Delivered security-awareness content modules and learning resources helping users identify phishing, fraud patterns, and best practices for safer digital interactions."
           ],
           links: [
+            { label: "Website", url: "https://ed-secure-hub.vercel.app/", type: "website" },
             { label: "GitHub", url: "https://github.com/Smiling-Hacker01", type: "github" }
           ],
         },
@@ -323,7 +324,7 @@ export const projects: ProjectsSection = {
         "Structured the platform with Node.js, MongoDB, and security-focused APIs to support maintainable feature expansion.",
       ],
       github: "https://github.com/Smiling-Hacker01",
-      link: "https://github.com/Smiling-Hacker01",
+      link: "https://ed-secure-hub.vercel.app/",
       tags: ["Node.js", "MongoDB", "Security APIs", "HTML/CSS"],
       color: "#6c63ff",
       isProfessional: false,
