@@ -153,7 +153,8 @@ export const workExperience: WorkExperience = {
           subtitle: "Cybersecurity Awareness & Complaint Management Platform",
           metrics: [
             { label: "Modules", value: "4+" },
-            { label: "Stack", value: "Node.js" },
+            { label: "Frontend", value: "Next.js, React" },
+            { label: "Database", value: "PostgreSQL" },
             { label: "Focus", value: "Security" },
           ],
           bullets: [
@@ -322,11 +323,11 @@ export const projects: ProjectsSection = {
         "Developed interactive cybersecurity training modules, awareness content, and practical learning resources to improve technical readiness.",
         "Implemented secure authentication patterns with brute-force protection and backend validation to reduce common account-security risks.",
         "Created student-focused modules for course resources, degree-based study material, handwritten notes, and interview preparation.",
-        "Structured the platform with Node.js, MongoDB, and security-focused APIs to support maintainable feature expansion.",
+        "Built the frontend with Next.js and React, backed by PostgreSQL and security-focused APIs, to support maintainable feature expansion.",
       ],
       github: "https://github.com/Smiling-Hacker01",
       link: "https://ed-secure-hub.vercel.app/",
-      tags: ["Node.js", "MongoDB", "Security APIs", "HTML/CSS"],
+      tags: ["Next.js", "React", "PostgreSQL", "Security APIs", "HTML/CSS"],
       color: "#6c63ff",
       isProfessional: false,
     },
