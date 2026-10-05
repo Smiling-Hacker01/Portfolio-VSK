@@ -176,7 +176,7 @@ export const projects: ProjectsSection = {
   subtitle: "",
   professionalTitle: "Professional Work",
   professionalBadge: "@ Matchbest Software",
-  personalTitle: "Personal Projects",
+  personalTitle: "Projects",
   personalBadge: "Open Source / Side Work",
 
   // ── PROFESSIONAL PROJECTS ──────────────────────────────────────────
