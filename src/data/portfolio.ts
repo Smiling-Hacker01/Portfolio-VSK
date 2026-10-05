@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   Greeting,
   SocialLinks,
   SkillSection,
@@ -143,7 +143,8 @@ export const workExperience: WorkExperience = {
             "Structured modular REST API layers with robust input validation, error handling, and clear service boundaries to support maintainable long-term feature expansion."
           ],
           links: [
-            { label: "Health Sewa", url: "https://healthsewa1.netlify.app/userregister/signup", type: "website" }
+            { label: "Health Sewa", url: "https://healthsewa1.netlify.app/userregister/signup", type: "website" },
+            { label: "GitHub", url: "https://github.com/Smiling-Hacker01/Health-Sewa-Backend", type: "github" }
           ],
         },
         {
@@ -162,8 +163,8 @@ export const workExperience: WorkExperience = {
             "Delivered security-awareness content modules and learning resources helping users identify phishing, fraud patterns, and best practices for safer digital interactions."
           ],
           links: [
-            { label: "Website", url: "https://ed-secure-hub.vercel.app/", type: "website" },
-            { label: "GitHub", url: "https://github.com/Smiling-Hacker01", type: "github" }
+            { label: "EdSecure Hub", url: "https://ed-secure-hub.vercel.app/", type: "website" },
+            { label: "GitHub", url: "https://github.com/Smiling-Hacker01/Ed-Secure-Hub", type: "github" }
           ],
         },
       ],
