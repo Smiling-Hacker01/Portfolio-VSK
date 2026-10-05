@@ -15,7 +15,7 @@ const StatChip = ({ stat }: { stat: { label: string; value: string } }) => {
   const { count, ref } = useCountUp(numericPart ?? 0, 2000, numericPart !== null);
 
   return (
-    <div ref={ref as any} className="flex flex-col items-start p-3 sm:p-4 rounded-xl bg-surface/40 border border-border-glow">
+    <div ref={ref} className="flex flex-col items-start p-3 sm:p-4 rounded-xl bg-surface/40 border border-border-glow">
       <div className="text-xl sm:text-2xl font-bold font-syne text-secondary mb-1 leading-none">
         {numericPart !== null ? `${prefix}${count}${suffix}` : stat.value}
       </div>

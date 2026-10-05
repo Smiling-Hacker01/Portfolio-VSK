@@ -1,4 +1,4 @@
-﻿import type {
+import type {
   Greeting,
   SocialLinks,
   SkillSection,
@@ -14,7 +14,7 @@ export const greeting: Greeting = {
   name: "Vishal",
   title: "Hi, I'm Vishal 👋",
   subtitle: "Backend Engineer focused on designing reliable, scalable, and production-grade SaaS systems. Experienced in architecting multi-tenant platforms, optimizing backend performance, and solving complex infrastructure challenges at scale.",
-  resumeLink: "https://docs.google.com/document/d/11W5QpFQFb1EGMqoy0zeFE1Ols0pUZ0ny/edit?usp=sharing&ouid=113691555438746256913&rtpof=true&sd=true",
+  resumeLink: "https://docs.google.com/document/d/19TB8EYGjiuGIbXO6sk_BV57ZDXB30pNb/edit?usp=sharing&ouid=113691555438746256913&rtpof=true&sd=true",
 };
 
 export const socialLinks: SocialLinks = {
@@ -109,7 +109,7 @@ export const workExperience: WorkExperience = {
           bullets: [
             "Led the backend infrastructure design for a high-traffic social platform. Focused on scalability and observability, I architected a hybrid event-tracking system with real-time streaming to Amplitude and Braze, utilizing a custom relay adapter for optimized Firebase audit logging.",
             "Discovered and patched a severe cross-user event isolation vulnerability related to offline attribution. I fundamentally redesigned the event flow by introducing per-user isolated queues, completely eliminating data contamination risks and safeguarding user privacy during reauthentication.",
-            "Built an automated copyright moderation pipeline integrated with Audible Magic. By leveraging PostgreSQL triggers for pre-transcoding scans, I significantly reduced wasted compute on blocked media. Engineered a scalable schema for ISRC metadata and implemented Fail-Open governance to gracefully handle third-party API outages.",
+            "Designed and developed the video moderation and takedown pipeline handling automated content blocking, moderation state transitions, and recovery workflows. Diagnosed a latent production defect in the restoration workflow where early moderation captured incomplete transcode state (~20s post-upload vs. ~2min transcode duration), causing automatically blocked videos to become permanently unrestorable; resolved the state/timing mismatch between moderation decisions and asynchronous media transcoding.",
             "Drove massive performance gains across the platform through strategic Redis caching and in-memory fallbacks. Re-architected the main feed delivery with cursor-based pagination and materialized views."
           ],
           links: [
@@ -128,10 +128,41 @@ export const workExperience: WorkExperience = {
       color: "#00d4aa",
       projects: [
         {
-          name: "MERN Stack Development",
+          taxonomy: "01 / HEALTHCARE PLATFORM",
+          name: "Health Sewa",
+          subtitle: "Healthcare Management Platform",
+          metrics: [
+            { label: "API Modules", value: "6+" },
+            { label: "Stack", value: "Node.js" },
+            { label: "Database", value: "MySQL" },
+          ],
           bullets: [
-            "Owned the end-to-end delivery of five production-grade full-stack applications using the MERN stack. Managed the entire lifecycle from initial architectural planning and system design through development and final deployment.",
-            "Focused on establishing secure and scalable foundations across all projects, consistently implementing JWT-based authentication, Role-Based Access Control (RBAC), and robust backend validation patterns to ensure a consistent, professional security posture."
+            "Developed backend services for a healthcare management platform covering donor/recipient registration, hospital discovery, blood-donation workflows, healthcare blogs, and automated donor-matching workflows using Node.js, Express.js, MySQL, and REST APIs.",
+            "Implemented scheduled jobs, background processing, and event-driven workflows to automate donor discovery, registration flows, notifications, and other asynchronous platform operations.",
+            "Designed secure JWT-based authentication and role-based access control workflows to protect sensitive patient and donor data across all API endpoints.",
+            "Structured modular REST API layers with robust input validation, error handling, and clear service boundaries to support maintainable long-term feature expansion."
+          ],
+          links: [
+            { label: "Health Sewa", url: "https://healthsewa1.netlify.app/userregister/signup", type: "website" }
+          ],
+        },
+        {
+          taxonomy: "02 / CYBERSECURITY",
+          name: "EdSecure Hub",
+          subtitle: "Cybersecurity Awareness & Complaint Management Platform",
+          metrics: [
+            { label: "Modules", value: "4+" },
+            { label: "Stack", value: "Node.js" },
+            { label: "Focus", value: "Security" },
+          ],
+          bullets: [
+            "Contributed to a cybersecurity platform providing location tracking, cyber-fraud prevention workflows, security-awareness blogs, and structured complaint management for routing cybercrime reports to cyber-cell authorities.",
+            "Implemented secure user authentication, brute-force protection, and backend input validation workflows to reduce common account-level security risks across the platform.",
+            "Built structured complaint ingestion and routing workflows enabling users to formally report cybercrime incidents with categorized records forwarded to relevant cyber-cell authorities.",
+            "Delivered security-awareness content modules and learning resources helping users identify phishing, fraud patterns, and best practices for safer digital interactions."
+          ],
+          links: [
+            { label: "GitHub", url: "https://github.com/Smiling-Hacker01", type: "github" }
           ],
         },
       ],
@@ -153,6 +184,11 @@ export const projects: ProjectsSection = {
       name: "Enterprise Billing & Payments Platform",
       category: "professional",
       desc: "Designed backend services for a multi-tenant billing and payments platform, covering tenant isolation, subscription states, taxation, invoicing, payment orchestration, webhook verification, idempotency, and auditability.",
+      bullets: [
+        "Architected multi-tenant database schemas with strict tenant isolation and SOC 2-aligned immutable financial audit logging.",
+        "Built an event-driven payment processing pipeline using BullMQ, idempotent webhook handlers, and automated dunning workflows.",
+        "Engineered a proprietary GST/VAT tax engine supporting complex compound rules across multiple global tax jurisdictions."
+      ],
       tags: ["Node.js", "TypeScript", "PostgreSQL", "Redis", "BullMQ", "Prisma"],
       color: "#6c63ff",
       stats: [
@@ -168,6 +204,11 @@ export const projects: ProjectsSection = {
       name: "Real-Time Data Processing Platform",
       category: "professional",
       desc: "Built resilient event-processing services with user-isolated queues, backend relay handling, batched persistence, and observability-focused data flows to improve integrity across high-volume application events.",
+      bullets: [
+        "Architected a real-time event streaming pipeline forwarding high-volume product analytics to Amplitude and Braze.",
+        "Eliminated cross-user data contamination risks by redesigning the event ingestion flow with user-isolated queues.",
+        "Implemented custom backend relay adapters and batched persistence to safeguard user privacy and audit reliability."
+      ],
       tags: ["Node.js", "TypeScript", "Firebase", "Amplitude", "Braze", "Redis"],
       color: "#00d4aa",
       stats: [
@@ -180,15 +221,20 @@ export const projects: ProjectsSection = {
       isProfessional: true,
     },
     {
-      name: "Secure Content Moderation & Takedown System",
+      name: "Video Moderation & Takedown System",
       category: "professional",
-      desc: "Designed a media validation and takedown workflow that checks content before expensive processing stages, captures moderation metadata, supports content removal actions, and includes resilience controls for third-party dependency failures.",
-      tags: ["PostgreSQL", "Media Moderation", "Edge Functions", "Node.js"],
+      desc: "Designed and developed production video moderation and takedown workflows. Diagnosed and resolved a critical state/timing mismatch between early automated moderation decisions (~20s) and asynchronous video transcoding (~2min) that caused automatically blocked videos to become permanently unrestorable.",
+      bullets: [
+        "Architected automated video moderation workflows, policy-based content blocking, and deterministic takedown/recovery state transitions.",
+        "Diagnosed a latent production defect in video restoration where the system evaluated stale transcode status captured at block time (~20s) rather than dynamic completion state (~2m).",
+        "Decoupled moderation lifecycle decisions from background processing state, ensuring robust failure handling and reliable restoration."
+      ],
+      tags: ["Node.js", "TypeScript", "PostgreSQL", "Asynchronous Workflows", "State Consistency", "Failure Recovery"],
       color: "#f5c842",
       stats: [
-        { label: "Stage", value: "Pre-process" },
-        { label: "Action", value: "Takedown" },
-        { label: "Resilience", value: "Fallbacks" },
+        { label: "Block State", value: "~20s" },
+        { label: "Transcode", value: "~2m" },
+        { label: "Lifecycle", value: "Async Safe" },
       ],
       github: null,
       link: null,
@@ -198,7 +244,12 @@ export const projects: ProjectsSection = {
       name: "High-Traffic Backend Optimization",
       category: "professional",
       desc: "Improved backend responsiveness and operational reliability by introducing Redis caching, in-memory fallback paths, cursor-based pagination, and database view design for read-heavy product surfaces, reducing query latency from 800ms to 240ms.",
-      tags: ["Node.js", "Redis", "PostgreSQL", "AdMob/GMA"],
+      bullets: [
+        "Re-architected main feed delivery using cursor-based pagination and database materialized views, slashing query latency from 800ms to 240ms.",
+        "Engineered multi-tier Redis caching with resilient in-memory fallback paths to protect primary databases during peak read traffic.",
+        "Reduced database load by 60% while maintaining sub-100ms response times across read-heavy high-traffic application surfaces."
+      ],
+      tags: ["Node.js", "Redis", "PostgreSQL", "Cursor Pagination", "Materialized Views", "AdMob/GMA"],
       color: "#6c63ff",
       stats: [
         { label: "Response Time", value: "<100ms" },
@@ -315,9 +366,9 @@ export const achievements: Achievements = {
       icon: "shield",
     },
     {
-      title: "Secure Media Moderation Workflow",
-      subtitle: "Designed a pre-processing media validation workflow with metadata capture and resilience controls for third-party service downtime.",
-      icon: "check",
+      title: "Video Moderation & Restoration Architecture",
+      subtitle: "Diagnosed and resolved a critical state/timing defect between early moderation decisions (~20s) and asynchronous video transcoding (~2m), restoring recovery integrity for blocked media.",
+      icon: "shield",
     },
   ],
 };

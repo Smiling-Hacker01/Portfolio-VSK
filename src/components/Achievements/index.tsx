@@ -19,7 +19,7 @@ const StatItem = memo(({ end, suffix, label }: { end: number, suffix: string, la
   const { count, ref } = useCountUp(end, 2000);
   
   return (
-    <div ref={ref as any} className="flex flex-col items-center justify-center p-6 bg-surface/50 rounded-2xl border border-border-glow">
+    <div ref={ref} className="flex flex-col items-center justify-center p-6 bg-surface/50 rounded-2xl border border-border-glow">
       <div className="text-4xl md:text-5xl font-bold font-syne text-primary mb-2">
         {count}{suffix}
       </div>

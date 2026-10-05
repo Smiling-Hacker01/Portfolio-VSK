@@ -1,4 +1,4 @@
-﻿import { memo } from 'react';
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { projects } from '../../data/portfolio';
 import { fadeUp, staggerContainer } from '../../utils/animations';
@@ -14,7 +14,7 @@ const StatChip = ({ stat }: { stat: { label: string; value: string } }) => {
   const { count, ref } = useCountUp(numericPart ?? 0, 2000, numericPart !== null);
 
   return (
-    <div ref={ref as any} className="flex flex-col items-center justify-center p-2 rounded-lg bg-surface/50 border border-border-glow min-w-0 overflow-hidden">
+    <div ref={ref} className="flex flex-col items-center justify-center p-2 rounded-lg bg-surface/50 border border-border-glow min-w-0 overflow-hidden">
       <div className="text-sm sm:text-lg font-bold font-syne text-secondary mb-1 leading-tight text-center break-all">
         {numericPart !== null ? `${prefix}${count}${suffix}` : stat.value}
       </div>
@@ -69,7 +69,7 @@ const ProfessionalCard = memo(({ project }: { project: typeof projects.professio
           )}
 
           {project.stats && (
-            <div className="grid grid-cols-3 gap-2 mb-5">
+            <div className="grid grid-cols-3 gap-2 mb-4 mt-auto">
               {project.stats.map((stat, i) => (
                 <StatChip key={i} stat={stat} />
               ))}
@@ -77,7 +77,7 @@ const ProfessionalCard = memo(({ project }: { project: typeof projects.professio
           )}
         </div>
 
-        <div className="mt-auto pt-4 flex flex-col gap-4">
+        <div className="pt-2 flex flex-col gap-4">
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {project.tags.map((tag) => (
               <span 

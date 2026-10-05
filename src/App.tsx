@@ -59,8 +59,9 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>{greeting.name} | Backend Engineer</title>
-        <meta name="description" content={greeting.subtitle} />
+        <title>{greeting.name} | Backend Engineer — Video Moderation, Asynchronous Workflows & SaaS</title>
+        <meta name="description" content="Vishal - Backend Engineer specializing in scalable SaaS systems, asynchronous workflows, and distributed state consistency. Experienced in video moderation & takedown architecture, billing platforms, and production debugging." />
+        <meta name="keywords" content="Vishal, Backend Engineer, Software Engineer, Node.js, TypeScript, PostgreSQL, Video Moderation, Content Moderation, Takedown System, Production Systems, Asynchronous Workflows, State Consistency, Distributed Systems" />
       </Helmet>
 
       {/* Cursor Follower Glow */}
